@@ -16,5 +16,10 @@ L = sp.quantities.angular_momentum_vector()
 #find orthogonal vectors
 L, edge1, edge2 = ortho_find(L)
 #plot galaxy edge on
-p = yt.OffAxisProjectionPlot(ds, edge2, ('gas', 'density'), center=c, width=(100, 'kpc'), north_vector=L)
+#p = yt.OffAxisProjectionPlot(ds, edge2, ('gas', 'density'), center=c, width=(100, 'kpc'), north_vector=L)
+#p.save()
+
+#create a phase plot
+p = yt.PhasePlot(sp, ('gas', 'density'), ('gas', 'temperature'), ('gas', 'mass'), weight_field=None)
+p.set_unit(('gas', 'mass'), 'Msun')
 p.save()
