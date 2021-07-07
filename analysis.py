@@ -20,6 +20,7 @@ L, edge1, edge2 = ortho_find(L)
 #p.save()
 
 #create a phase plot
-p = yt.PhasePlot(sp, ('gas', 'density'), ('gas', 'temperature'), ('gas', 'mass'), weight_field=None)
+sp2 = ds.sphere(c, (250.0, 'kpc'))
+p = yt.PhasePlot(sp2, ('gas', 'density'), ('gas', 'temperature'), ('gas', 'mass'), weight_field=None)
 p.set_unit(('gas', 'mass'), 'Msun')
 p.save()
