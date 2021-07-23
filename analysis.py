@@ -219,12 +219,14 @@ sp3.set_field_parameter('bulk_velocity', bulk_vel)
 trident.add_ion_fields(ds, ions=['O VI'], ftype='gas')
 trident.add_ion_fields(ds, ions=['Mg II'], ftype='gas')
 
+##ion field projection plots
 pO = yt.ProjectionPlot(ds, 'z', 'O_p5_number_density', center=c, width=(20, 'kpc'))
 pO.save()
 
 pMg = yt.ProjectionPlot(ds, 'z', 'Mg_p1_number_density', center=c, width=(20, 'kpc'))
 pMg.save()
 
+##ion field phase plots
 adO = ds.all_data()
 phaseO = yt.PhasePlot(adO, ('gas', 'density'), ('gas', 'temperature'), ('gas', 'O_p5_mass'), weight_field=None, fractional=False)
 phaseO.save()
