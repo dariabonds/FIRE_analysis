@@ -219,16 +219,16 @@ sp3.set_field_parameter('bulk_velocity', bulk_vel)
 trident.add_ion_fields(ds, ions=['O VI'], ftype='gas')
 trident.add_ion_fields(ds, ions=['Mg II'], ftype='gas')
 
-pO = yt.ProjectionPlot(ds, 'z', 'O_p5_number_density')
+pO = yt.ProjectionPlot(ds, 'z', 'O_p5_number_density', center=c, width=(20, 'kpc'))
 pO.save()
 
-pMg = yt.ProjectionPlot(ds, 'z', 'Mg_p1_number_density')
+pMg = yt.ProjectionPlot(ds, 'z', 'Mg_p1_number_density', center=c, width=(20, 'kpc'))
 pMg.save()
 
 adO = ds.all_data()
-phaseO = yt.PhasePlot(adO, ('gas', 'density'), ('gas', 'temperature'), ('gas', 'O_p5_mass'), weight_field=None, fractional=True)
+phaseO = yt.PhasePlot(adO, ('gas', 'density'), ('gas', 'temperature'), ('gas', 'O_p5_mass'), weight_field=None, fractional=False)
 phaseO.save()
 
 adMg = ds.all_data()
-phaseMg = yt.PhasePlot(adMg, ('gas', 'density'), ('gas', 'temperature'), ('gas', 'Mg_p1_mass'), weight_field=None, fractional=True)
+phaseMg = yt.PhasePlot(adMg, ('gas', 'density'), ('gas', 'temperature'), ('gas', 'Mg_p1_mass'), weight_field=None, fractional=False)
 phaseMg.save()
