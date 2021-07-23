@@ -184,18 +184,23 @@ sp3.set_field_parameter('bulk_velocity', bulk_vel)
 ##(‘angle_’, ‘particle_radial_velocity’)
 ##(‘angle_’, ‘density’)
 ##(‘angle_’, ‘Density’)
+##similar to p.set_y_units(‘Msun’) ‘g cm**-3’ ‘g/cm**3’
 
 rp1 = yt.create_profile(sp3, ('angle_I', 'particle_position_spherical_radius'), ('angle_I', 'radial_velocity'), \
     units={('angle_I', 'particle_position_spherical_radius'): 'kpc'}, logs={('angle_I', 'particle_position_spherical_radius'): False})
 
-rp2 = yt.create_profile(sp3, ('angle_II', 'particle_position_spherical_radius'), ('angle_II' 'particle_radial_velocity'), \
+rp2 = yt.create_profile(sp3, ('angle_II', 'particle_position_spherical_radius'), ('angle_II' 'radial_velocity'), \
     units={('angle_II', 'particle_position_spherical_radius'): 'kpc'}, logs={('angle_II', 'particle_position_spherical_radius'): False})
+
+rp3 = yt.create_profile(sp3, ('angle_III', 'particle_position_spherical_radius'), ('angle_III', 'radial_velocity'), \
+    units={('angle_III', 'particle_position_spherical_radius'): 'kpc'}, logs={('angle_III', 'particle_position_spherical_radius'): False})
 
 ##radial velocity profile
 p = plt.figure()
 ax = p.add_subplot(111)
-ax.plot(rp1.x.value, rp1[("gas", "radial_velocity")].in_units("km/s").value, \
-    rp2.x.value, rp2[("gas", "radial_velocity")].in_units("km/s").value)
+ax.plot(rp1.x.value, rp1[("angle_I", "radial_velocity")].in_units("km/s").value, \
+    rp2.x.value, rp2[("angle_II", "radial_velocity")].in_units("km/s").value, \
+    rp3.x.value, rp2[("angle_III", "radial_velocity")].in_units("km/s").value)
 ax.set_xlabel(r"$\mathrm{r\ (kpc)}$")
 ax.set_ylabel(r"$\mathrm{v_r\ (km/s)}$")
 ax.legend(["0-15", "15-30", "30-45"])
@@ -204,13 +209,14 @@ p.savefig("snapshot_600_radial_velocity_profile.png")
 import sys; sys.exit()
 
 ##generate species plots
-# trident.add_ion_fields(ds, ions=['O VI'], ftype="gas")
-# pO = yt.ProjectionPlot(ds, "z", "O_p5_number_density")
-# pO.save()
+trident.add_ion_fields(ds, ions=['O VI'], ftype="gas")
+trident.add_ion_fields(ds, ions=['Mg II'], ftype="gas")
 
-# trident.add_ion_fields(ds, ions=['Mg II'], ftype="gas")
-# pMg = yt.ProjectionPlot(ds, "z", "Mg_p1_number_density")
-# pMg.save()
+#pO = yt.ProjectionPlot(ds, "z", "O_p5_number_density")
+#pO.save()
+
+#pMg = yt.ProjectionPlot(ds, "z", "Mg_p1_number_density")
+#pMg.save()
 
 ##no weight field, gas and ion, similar to previous plase plots
 #PhasePlot(sp2, ('gas', 'density'), ('gas', 'temperature'), ('gas', 'mass'), weight_field=None)
@@ -218,6 +224,6 @@ import sys; sys.exit()
 #phaseO = yt.PhasePlot(adO, ('gas', 'density'), ('gas', 'temperature'), ('gas', 'O_p5_mass'), weight_field=None, fractional=True)
 #phaseO.save()
 
-# adMg = ds.all_data()
-# phaseMg = yt.PhasePlot(adMg, ('gas', 'density'), ('gas', 'temperature'), ["Mg_p1_mass"], weight_field="Mg_p1_mass", fractional=True)
-# phaseMg.save()
+#adMg = ds.all_data()
+#phaseMg = yt.PhasePlot(adMg, ('gas', 'density'), ('gas', 'temperature'), ["Mg_p1_mass"], weight_field="Mg_p1_mass", fractional=True)
+#phaseMg.save()
