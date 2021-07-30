@@ -59,7 +59,7 @@ yt.add_field(name=('gas', 'phi'), function=_phi, sampling_type='local', units='d
 ##load in dataset
 #ds = yt.load('../m12i_res56000_md/snapshot_600.hdf5')
 #ds = yt.load('../m12i_res7100_md/snapdir_600/snapshot_600.0.hdf5')
-ds = yt.load('/mnt/data1/GalaxiesOnFIRE/panfs/ds08/hopkins/chummels/cr_700/output/snapdir_600')
+ds = yt.load('../panfs/ds08/hopkins/chummels/cr_700/output/snapdir_600')
 
 ##find galaxy center
 #_, c = ds.find_max(('gas', 'density'))
