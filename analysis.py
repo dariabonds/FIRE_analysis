@@ -57,15 +57,15 @@ def _phi(field, data):
 yt.add_field(name=('gas', 'phi'), function=_phi, sampling_type='local', units='deg')
 
 ##load in dataset
-ds = yt.load('../m12i_res56000_md/snapshot_600.hdf5')
+#ds = yt.load('../m12i_res56000_md/snapshot_600.hdf5')
 #ds = yt.load('../m12i_res7100_md/snapdir_600/snapshot_600.0.hdf5')
-#ds = yt.load('/mnt/data1/GalaxiesOnFIRE/panfs/ds08/hopkins/chummels/cr_700/output/snapdir_600')
+ds = yt.load('/mnt/data1/GalaxiesOnFIRE/panfs/ds08/hopkins/chummels/cr_700/output/snapdir_600')
 
 ##find galaxy center
-_, c = ds.find_max(('gas', 'density'))
+#_, c = ds.find_max(('gas', 'density'))
 ##specific coord (x,y,z)
 #c = ds.arr([29338.09863660, 30980.12414340, 32479.90455557], 'code_length')
-#c = ds.arr([29345.27830223  30997.08859958  32484.0642261], 'code_length')
+c = ds.arr([29345.27830223  30997.08859958  32484.0642261], 'code_length')
 
 ##add filters to data
 ds.add_particle_filter('angle_I')
@@ -218,59 +218,59 @@ sp3.set_field_parameter('bulk_velocity', bulk_vel)
 
 ##radial densities by angle bins
 ##(‘angle_’, ‘density’)
-rp1 = yt.create_profile(sp3, ('angle_I', 'spherical_position_radius'), ('angle_I', 'density'), weight_field=('angle_I', 'mass'), \
-    units={('angle_I', 'spherical_position_radius'): 'kpc'}, logs={('angle_I', 'spherical_position_radius'): True})
+#rp1 = yt.create_profile(sp3, ('angle_I', 'spherical_position_radius'), ('angle_I', 'density'), weight_field=('angle_I', 'mass'), \
+#    units={('angle_I', 'spherical_position_radius'): 'kpc'}, logs={('angle_I', 'spherical_position_radius'): True})
 
-rp2 = yt.create_profile(sp3, ('angle_II', 'spherical_position_radius'), ('angle_II', 'density'), weight_field=('angle_II', 'mass'), \
-    units={('angle_II', 'spherical_position_radius'): 'kpc'}, logs={('angle_II', 'spherical_position_radius'): True})
+#rp2 = yt.create_profile(sp3, ('angle_II', 'spherical_position_radius'), ('angle_II', 'density'), weight_field=('angle_II', 'mass'), \
+#    units={('angle_II', 'spherical_position_radius'): 'kpc'}, logs={('angle_II', 'spherical_position_radius'): True})
 
-rp3 = yt.create_profile(sp3, ('angle_III', 'spherical_position_radius'), ('angle_III', 'density'), weight_field=('angle_III', 'mass'), \
-    units={('angle_III', 'spherical_position_radius'): 'kpc'}, logs={('angle_III', 'spherical_position_radius'): True})
+#rp3 = yt.create_profile(sp3, ('angle_III', 'spherical_position_radius'), ('angle_III', 'density'), weight_field=('angle_III', 'mass'), \
+#    units={('angle_III', 'spherical_position_radius'): 'kpc'}, logs={('angle_III', 'spherical_position_radius'): True})
 
-rp4 = yt.create_profile(sp3, ('angle_IV', 'spherical_position_radius'), ('angle_IV', 'density'), weight_field=('angle_IV', 'mass'), \
-    units={('angle_IV', 'spherical_position_radius'): 'kpc'}, logs={('angle_IV', 'spherical_position_radius'): True})
+#rp4 = yt.create_profile(sp3, ('angle_IV', 'spherical_position_radius'), ('angle_IV', 'density'), weight_field=('angle_IV', 'mass'), \
+#    units={('angle_IV', 'spherical_position_radius'): 'kpc'}, logs={('angle_IV', 'spherical_position_radius'): True})
 
-rp5 = yt.create_profile(sp3, ('angle_V', 'spherical_position_radius'), ('angle_V', 'density'), weight_field=('angle_V', 'mass'), \
-    units={('angle_V', 'spherical_position_radius'): 'kpc'}, logs={('angle_V', 'spherical_position_radius'): True})
+#rp5 = yt.create_profile(sp3, ('angle_V', 'spherical_position_radius'), ('angle_V', 'density'), weight_field=('angle_V', 'mass'), \
+#    units={('angle_V', 'spherical_position_radius'): 'kpc'}, logs={('angle_V', 'spherical_position_radius'): True})
 
-rp6 = yt.create_profile(sp3, ('angle_VI', 'spherical_position_radius'), ('angle_VI', 'density'), weight_field=('angle_VI', 'mass'), \
-    units={('angle_VI', 'spherical_position_radius'): 'kpc'}, logs={('angle_VI', 'spherical_position_radius'): True})
+#rp6 = yt.create_profile(sp3, ('angle_VI', 'spherical_position_radius'), ('angle_VI', 'density'), weight_field=('angle_VI', 'mass'), \
+#    units={('angle_VI', 'spherical_position_radius'): 'kpc'}, logs={('angle_VI', 'spherical_position_radius'): True})
 
 ##radial density profile
-p = plt.figure()
-ax = p.add_subplot(111)
-ax.plot(rp1.x.value, rp1[("angle_I", "density")].in_units("g/cm**3").value, \
-        rp2.x.value, rp2[("angle_II", "density")].in_units("g/cm**3").value, \
-        rp3.x.value, rp3[("angle_III", "density")].in_units("g/cm**3").value, \
-        rp4.x.value, rp4[("angle_IV", "density")].in_units("g/cm**3").value, \
-        rp5.x.value, rp5[("angle_V", "density")].in_units("g/cm**3").value, \
-        rp6.x.value, rp6[("angle_VI", "density")].in_units("g/cm**3").value)
-ax.set_yscale('log')
-ax.set_xlabel(r"$\mathrm{r\ (kpc)}$")
-ax.set_ylabel(r"$\mathrm{rho\ (g/cm**3)}$")
-ax.legend(["0-15", "15-30", "30-45", "45-60", "60-75", "75-90"])
+#p = plt.figure()
+#ax = p.add_subplot(111)
+#ax.plot(rp1.x.value, rp1[("angle_I", "density")].in_units("g/cm**3").value, \
+#        rp2.x.value, rp2[("angle_II", "density")].in_units("g/cm**3").value, \
+#        rp3.x.value, rp3[("angle_III", "density")].in_units("g/cm**3").value, \
+#        rp4.x.value, rp4[("angle_IV", "density")].in_units("g/cm**3").value, \
+#        rp5.x.value, rp5[("angle_V", "density")].in_units("g/cm**3").value, \
+#        rp6.x.value, rp6[("angle_VI", "density")].in_units("g/cm**3").value)
+#ax.set_yscale('log')
+#ax.set_xlabel(r"$\mathrm{r\ (kpc)}$")
+#ax.set_ylabel(r"$\mathrm{rho\ (g/cm**3)}$")
+#ax.legend(["0-15", "15-30", "30-45", "45-60", "60-75", "75-90"])
 #p.savefig("snapshot_600_radial_density_profile_1.png")
 #p.savefig("snapshot_600_radial_density_profile_2.png")
 #p.savefig("snapshot_600_radial_density_profile_3.png")
 
 ##generate ion species felds
-#trident.add_ion_fields(ds, ions=['O VI'], ftype='gas')
+trident.add_ion_fields(ds, ions=['O VI'], ftype='gas')
 #trident.add_ion_fields(ds, ions=['Mg II'], ftype='gas')
 #trident.add_ion_fields(ds, ions=['H I'], ftype='gas')
 
 ##face on ion field projection plots
-#pO = yt.ProjectionPlot(ds, 'z', 'O_p5_number_density', center=c, width=(500, 'kpc'))
-#pO.save()
+pO = yt.ProjectionPlot(ds, 'z', 'O_p5_number_density', center=c, width=(500, 'kpc'))
+pO.save()
 
-#pMg = yt.ProjectionPlot(ds, 'z', 'Mg_p1_number_density', center=c, width=(500, 'kpc'))
-#pMg.save()
+pMg = yt.ProjectionPlot(ds, 'z', 'Mg_p1_number_density', center=c, width=(500, 'kpc'))
+pMg.save()
 
 ##off axis ion projection plots
-#pO = yt.OffAxisProjectionPlot(ds, edge2, 'O_p5_number_density', center=c, width=(500, 'kpc'), north_vector=L)
-#pO.save()
+pO2 = yt.OffAxisProjectionPlot(ds, edge2, 'O_p5_number_density', center=c, width=(500, 'kpc'), north_vector=L)
+pO2.save()
 
-#pMg = yt.OffAxisProjectionPlot(ds, edge2, 'Mg_p1_number_density', center=c, width=(500, 'kpc'), north_vector=L)
-#pMg.save()
+pMg2 = yt.OffAxisProjectionPlot(ds, edge2, 'Mg_p1_number_density', center=c, width=(500, 'kpc'), north_vector=L)
+pMg2.save()
 
 ##ion field phase plots
 #adO = ds.all_data()
@@ -282,3 +282,8 @@ ax.legend(["0-15", "15-30", "30-45", "45-60", "60-75", "75-90"])
 #phaseMg.save()
 
 import sys; sys.exit()
+
+##check with off axis slice and velocity vectors
+p = yt.OffAxisSlicePlot(ds, edge2, ('gas', 'density'), center=c, width=(200, 'kpc'), north_vector=L)
+p.annotate_velocity()
+p.save()
