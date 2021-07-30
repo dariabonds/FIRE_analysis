@@ -65,7 +65,7 @@ ds = yt.load('/mnt/data1/GalaxiesOnFIRE/panfs/ds08/hopkins/chummels/cr_700/outpu
 #_, c = ds.find_max(('gas', 'density'))
 ##specific coord (x,y,z)
 #c = ds.arr([29338.09863660, 30980.12414340, 32479.90455557], 'code_length')
-c = ds.arr([29345.27830223  30997.08859958  32484.0642261], 'code_length')
+c = ds.arr([29345.27830223, 30997.08859958, 32484.0642261], 'code_length')
 
 ##add filters to data
 ds.add_particle_filter('angle_I')
