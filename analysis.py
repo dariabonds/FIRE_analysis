@@ -57,29 +57,27 @@ def _phi(field, data):
 yt.add_field(name=('gas', 'phi'), function=_phi, sampling_type='local', units='deg')
 
 ##load in dataset
-ds = yt.load('../m12i_res56000_md/snapshot_600.hdf5')
-#ds = yt.load('../m12i_res7100_md/snapdir_600/snapshot_600.0.hdf5')
-##ds = yt.load('/mnt/data1/GalaxiesOnFIRE/metaldiff/m12i_res7100/output/snapshot_600.0.hdf5')
-##ds = yt.load('/panfs/ds08/hopkins/chummels/cr_700/output/snapdir_600')
-##ds = yt.load('/mnt/data1/GalaxiesOnFIRE/metaldiff/cr_700/output/snapdir_600')
+#ds = yt.load('../m12i_res56000_md/snapshot_600.hdf5') #ds1
+#ds = yt.load('../m12i_res7100_md/snapdir_600/snapshot_600.0.hdf5') #ds2
+ds = yt.load('/mnt/data1/GalaxiesOnFIRE/metaldiff/m12i_res7100_md/output/snapdir_600/snapshot_600.0.hdf5') #ds2
+##ds = yt.load('/mnt/data1/GalaxiesOnFIRE/cr_700/output/snapdir_600/snapshot_600.0.hdf5') #ds3
 
 ##find galaxy center
-_, c = ds.find_max(('gas', 'density'))
+#_, c = ds.find_max(('gas', 'density'))
 ##specific coord (x,y,z)
-#c = ds.arr([29338.09863660, 30980.12414340, 32479.90455557], 'code_length') #ds2
+c = ds.arr([29338.09863660, 30980.12414340, 32479.90455557], 'code_length') #ds2
 #c = ds.arr([29345.27830223, 30997.08859958, 32484.0642261], 'code_length') #ds3
 
 ##add filters to data
-ds.add_particle_filter('angle_I')
-ds.add_particle_filter('angle_II')
-ds.add_particle_filter('angle_III')
-ds.add_particle_filter('angle_IV')
-ds.add_particle_filter('angle_V')
-ds.add_particle_filter('angle_VI')
+#ds.add_particle_filter('angle_I')
+#ds.add_particle_filter('angle_II')
+#ds.add_particle_filter('angle_III')
+#ds.add_particle_filter('angle_IV')
+#ds.add_particle_filter('angle_V')
+#ds.add_particle_filter('angle_VI')
 
 ##plot galaxy face on
 #p = yt.ProjectionPlot(ds, 'x', ('gas', 'density'), center=c, width=(100, 'kpc'))
-#p = yt.ProjectionPlot(ds, 'x', ('gas', 'density'), center=c, width=(10, 'kpc'))
 #p.save()
 
 ##create sphere
@@ -90,9 +88,9 @@ L = sp1.quantities.angular_momentum_vector()
 L, edge1, edge2 = ortho_find(L)
 
 ##plot galaxy edge on
-#p = yt.OffAxisProjectionPlot(ds, edge2, ('gas', 'density'), center=c, width=(100, 'kpc'), north_vector=L)
-#p = yt.OffAxisProjectionPlot(ds, edge2, ('gas', 'density'), center=c, width=(10, 'kpc'), north_vector=L)
-#p.save()
+p = yt.OffAxisProjectionPlot(ds, edge2, ('gas', 'density'), center=c, width=(200, 'kpc'), north_vector=L)
+p.save()
+import sys; sys.exit()
 
 ##create a phase plot
 sp2 = ds.sphere(c, (200.0, 'kpc'))
@@ -185,40 +183,38 @@ sp3.set_field_parameter('bulk_velocity', bulk_vel)
 
 ##radial velocities by angle bins
 ##(‘angle_’, ‘radial_velocity’)
-rp1 = yt.create_profile(sp3, ('angle_I', 'spherical_position_radius'), ('angle_I', 'radial_velocity'), weight_field=('angle_I', 'mass'), \
-    units={('angle_I', 'spherical_position_radius'): 'kpc'}, logs={('angle_I', 'spherical_position_radius'): False})
+#rp1 = yt.create_profile(sp3, ('angle_I', 'spherical_position_radius'), ('angle_I', 'radial_velocity'), weight_field=('angle_I', 'mass'), \
+#    units={('angle_I', 'spherical_position_radius'): 'kpc'}, logs={('angle_I', 'spherical_position_radius'): False})
 
-rp2 = yt.create_profile(sp3, ('angle_II', 'spherical_position_radius'), ('angle_II', 'radial_velocity'), weight_field=('angle_II', 'mass'), \
-    units={('angle_II', 'spherical_position_radius'): 'kpc'}, logs={('angle_II', 'spherical_position_radius'): False})
+#rp2 = yt.create_profile(sp3, ('angle_II', 'spherical_position_radius'), ('angle_II', 'radial_velocity'), weight_field=('angle_II', 'mass'), \
+#    units={('angle_II', 'spherical_position_radius'): 'kpc'}, logs={('angle_II', 'spherical_position_radius'): False})
 
-rp3 = yt.create_profile(sp3, ('angle_III', 'spherical_position_radius'), ('angle_III', 'radial_velocity'), weight_field=('angle_III', 'mass'), \
-    units={('angle_III', 'spherical_position_radius'): 'kpc'}, logs={('angle_III', 'spherical_position_radius'): False})
+#rp3 = yt.create_profile(sp3, ('angle_III', 'spherical_position_radius'), ('angle_III', 'radial_velocity'), weight_field=('angle_III', 'mass'), \
+#    units={('angle_III', 'spherical_position_radius'): 'kpc'}, logs={('angle_III', 'spherical_position_radius'): False})
 
-rp4 = yt.create_profile(sp3, ('angle_IV', 'spherical_position_radius'), ('angle_IV', 'radial_velocity'), weight_field=('angle_IV', 'mass'), \
-    units={('angle_IV', 'spherical_position_radius'): 'kpc'}, logs={('angle_IV', 'spherical_position_radius'): False})
+#rp4 = yt.create_profile(sp3, ('angle_IV', 'spherical_position_radius'), ('angle_IV', 'radial_velocity'), weight_field=('angle_IV', 'mass'), \
+#    units={('angle_IV', 'spherical_position_radius'): 'kpc'}, logs={('angle_IV', 'spherical_position_radius'): False})
 
-rp5 = yt.create_profile(sp3, ('angle_V', 'spherical_position_radius'), ('angle_V', 'radial_velocity'), weight_field=('angle_V', 'mass'), \
-    units={('angle_V', 'spherical_position_radius'): 'kpc'}, logs={('angle_V', 'spherical_position_radius'): False})
+#rp5 = yt.create_profile(sp3, ('angle_V', 'spherical_position_radius'), ('angle_V', 'radial_velocity'), weight_field=('angle_V', 'mass'), \
+#    units={('angle_V', 'spherical_position_radius'): 'kpc'}, logs={('angle_V', 'spherical_position_radius'): False})
 
-rp6 = yt.create_profile(sp3, ('angle_VI', 'spherical_position_radius'), ('angle_VI', 'radial_velocity'), weight_field=('angle_VI', 'mass'), \
-    units={('angle_VI', 'spherical_position_radius'): 'kpc'}, logs={('angle_VI', 'spherical_position_radius'): False})
+#rp6 = yt.create_profile(sp3, ('angle_VI', 'spherical_position_radius'), ('angle_VI', 'radial_velocity'), weight_field=('angle_VI', 'mass'), \
+#    units={('angle_VI', 'spherical_position_radius'): 'kpc'}, logs={('angle_VI', 'spherical_position_radius'): False})
 
 ##radial velocity profile
-p = plt.figure()
-ax = p.add_subplot(111)
-ax.plot(rp1.x.value, rp1[("angle_I", "radial_velocity")].in_units("km/s").value, \
-        rp2.x.value, rp2[("angle_II", "radial_velocity")].in_units("km/s").value, \
-        rp3.x.value, rp3[("angle_III", "radial_velocity")].in_units("km/s").value, \
-        rp4.x.value, rp4[("angle_IV", "radial_velocity")].in_units("km/s").value, \
-        rp5.x.value, rp5[("angle_V", "radial_velocity")].in_units("km/s").value, \
-        rp6.x.value, rp6[("angle_VI", "radial_velocity")].in_units("km/s").value)
-ax.set_xlabel(r"$\mathrm{r\ (kpc)}$")
-ax.set_ylabel(r"$\mathrm{v_r\ (km/s)}$")
-ax.legend(["0-15", "15-30", "30-45", "45-60", "60-75", "75-90"])
-p.savefig("snapshot_600_radial_velocity_profile_1.1.png")
+#p = plt.figure()
+#ax = p.add_subplot(111)
+#ax.plot(rp1.x.value, rp1[("angle_I", "radial_velocity")].in_units("km/s").value, \
+#        rp2.x.value, rp2[("angle_II", "radial_velocity")].in_units("km/s").value, \
+#        rp3.x.value, rp3[("angle_III", "radial_velocity")].in_units("km/s").value, \
+#        rp4.x.value, rp4[("angle_IV", "radial_velocity")].in_units("km/s").value, \
+#        rp5.x.value, rp5[("angle_V", "radial_velocity")].in_units("km/s").value, \
+#        rp6.x.value, rp6[("angle_VI", "radial_velocity")].in_units("km/s").value)
+#ax.set_xlabel(r"$\mathrm{r\ (kpc)}$")
+#ax.set_ylabel(r"$\mathrm{v_r\ (km/s)}$")
+#ax.legend(["0-15", "15-30", "30-45", "45-60", "60-75", "75-90"])
+#p.savefig("snapshot_600_radial_velocity_profile_1.1.png")
 #p.savefig("snapshot_600_radial_velocity_profile_2.png")
-
-import sys; sys.exit()
 
 ##radial densities by angle bins
 ##(‘angle_’, ‘density’)
@@ -269,12 +265,18 @@ import sys; sys.exit()
 #pMg = yt.ProjectionPlot(ds, 'z', 'Mg_p1_number_density', center=c, width=(500, 'kpc'))
 #pMg.save()
 
+#pH = yt.ProjectionPlot(ds, 'z', 'H_p0_number_density', center=c, width=(500, 'kpc'))
+#pH.save()
+
 ##off axis ion projection plots
 #pO2 = yt.OffAxisProjectionPlot(ds, edge2, 'O_p5_number_density', center=c, width=(500, 'kpc'), north_vector=L)
 #pO2.save()
 
 #pMg2 = yt.OffAxisProjectionPlot(ds, edge2, 'Mg_p1_number_density', center=c, width=(500, 'kpc'), north_vector=L)
 #pMg2.save()
+
+#pH2 = yt.OffAxisProjectionPlot(ds, edge2, 'H_p0_number_density', center=c, width=(500, 'kpc'), north_vector=L)
+#pH2.save()
 
 ##ion field phase plots
 #adO = ds.all_data()
@@ -285,9 +287,13 @@ import sys; sys.exit()
 #phaseMg = yt.PhasePlot(adMg, ('gas', 'density'), ('gas', 'temperature'), ('gas', 'Mg_p1_mass'), weight_field=None, fractional=False)
 #phaseMg.save()
 
+#adH = ds.all_data()
+#phaseH = yt.PhasePlot(adH, ('gas', 'density'), ('gas', 'temperature'), ('gas', 'H_p0_mass'), weight_field=None, fractional=False)
+#phaseH.save()
+
 #import sys; sys.exit()
 
 ##off axis slice and velocity vectors
-p = yt.OffAxisSlicePlot(ds, edge2, ('gas', 'density'), center=c, width=(200, 'kpc'), north_vector=L)
-p.annotate_velocity(plot_args={"headwidth": 5})
-p.save()
+#p = yt.SlicePlot(ds, 'z', ('gas', 'density'), center=c, width=(200, 'kpc'), data_source=sp3)
+#p.annotate_velocity(plot_args={"headwidth": 5})
+#p.save()
