@@ -59,7 +59,7 @@ yt.add_field(name=('gas', 'phi'), function=_phi, sampling_type='local', units='d
 ##load in dataset
 #ds = yt.load('../m12i_res56000_md/snapshot_600.hdf5') #ds1
 #ds = yt.load('../m12i_res7100_md/snapdir_600/snapshot_600.0.hdf5') #ds2
-ds = yt.load('cd /mnt/data1/GalaxiesOnFIRE/metaldiff/m12i_res7100_md/output/snapdir_600/snapshot_600.0.hdf5') #ds2
+ds = yt.load('/mnt/data1/GalaxiesOnFIRE/metaldiff/m12i_res7100_md/output/snapdir_600/snapshot_600.0.hdf5') #ds2
 ##ds = yt.load('/mnt/data1/GalaxiesOnFIRE/cr_700/output/snapdir_600/snapshot_600.0.hdf5') #ds3
 
 ##find galaxy center
