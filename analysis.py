@@ -268,27 +268,27 @@ pH = yt.ProjectionPlot(ds, 'z', 'H_p0_number_density', center=c, width=(500, 'kp
 pH.save()
 
 ##off axis ion projection plots
-pO2 = yt.OffAxisProjectionPlot(ds, edge2, 'O_p5_number_density', center=c, width=(500, 'kpc'), north_vector=L)
+pO2 = yt.OffAxisProjectionPlot(ds, edge2, 'O_p5_number_density', center=c, width=(200, 'kpc'), north_vector=L)
 pO2.save()
 
-pMg2 = yt.OffAxisProjectionPlot(ds, edge2, 'Mg_p1_number_density', center=c, width=(500, 'kpc'), north_vector=L)
+pMg2 = yt.OffAxisProjectionPlot(ds, edge2, 'Mg_p1_number_density', center=c, width=(200, 'kpc'), north_vector=L)
 pMg2.save()
 
-pH2 = yt.OffAxisProjectionPlot(ds, edge2, 'H_p0_number_density', center=c, width=(500, 'kpc'), north_vector=L)
+pH2 = yt.OffAxisProjectionPlot(ds, edge2, 'H_p0_number_density', center=c, width=(200, 'kpc'), north_vector=L)
 pH2.save()
 
 ##ion field phase plots
-adO = ds.all_data()
-phaseO = yt.PhasePlot(adO, ('gas', 'density'), ('gas', 'temperature'), ('gas', 'O_p5_mass'), weight_field=None, fractional=False)
-phaseO.save()
+#adO = ds.all_data()
+#phaseO = yt.PhasePlot(adO, ('gas', 'density'), ('gas', 'temperature'), ('gas', 'O_p5_mass'), weight_field=None, fractional=False)
+#phaseO.save()
 
-adMg = ds.all_data()
-phaseMg = yt.PhasePlot(adMg, ('gas', 'density'), ('gas', 'temperature'), ('gas', 'Mg_p1_mass'), weight_field=None, fractional=False)
-phaseMg.save()
+#adMg = ds.all_data()
+#phaseMg = yt.PhasePlot(adMg, ('gas', 'density'), ('gas', 'temperature'), ('gas', 'Mg_p1_mass'), weight_field=None, fractional=False)
+#phaseMg.save()
 
-adH = ds.all_data()
-phaseH = yt.PhasePlot(adH, ('gas', 'density'), ('gas', 'temperature'), ('gas', 'H_p0_mass'), weight_field=None, fractional=False)
-phaseH.save()
+#adH = ds.all_data()
+#phaseH = yt.PhasePlot(adH, ('gas', 'density'), ('gas', 'temperature'), ('gas', 'H_p0_mass'), weight_field=None, fractional=False)
+#phaseH.save()
 
 import sys; sys.exit()
 
