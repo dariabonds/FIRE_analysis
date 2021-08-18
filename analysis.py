@@ -102,16 +102,15 @@ sp2.set_field_parameter('center', c)
 sp2.set_field_parameter('normal', L)
 
 ##create particle phase plot
-p = yt.PhasePlot(sp2, ('PartType0', 'particle_position_spherical_radius'), ('gas', 'phi'), \
-   ('gas', 'mass'), weight_field=None)
-p.set_unit(('gas', 'mass'), 'Msun')
-p.set_unit(('PartType0', 'particle_position_spherical_radius'), 'kpc')
-p.set_unit(('gas', 'phi'), 'deg')
-p.set_xlim(1e-2, 1e3)
-p.set_ylim(0,90)
-p.set_log(('gas', 'phi'), False)
-p.save()
-import sys; sys.exit()
+#p = yt.PhasePlot(sp2, ('PartType0', 'particle_position_spherical_radius'), ('gas', 'phi'), \
+#   ('gas', 'mass'), weight_field=None)
+#p.set_unit(('gas', 'mass'), 'Msun')
+#p.set_unit(('PartType0', 'particle_position_spherical_radius'), 'kpc')
+#p.set_unit(('gas', 'phi'), 'deg')
+#p.set_xlim(1e-2, 1e3)
+#p.set_ylim(0,90)
+#p.set_log(('gas', 'phi'), False)
+#p.save()
 
 ##apply angle filters
 #p1 = yt.PhasePlot(sp2, ('angle_I', 'spherical_position_radius'), \
@@ -254,44 +253,44 @@ sp3.set_field_parameter('bulk_velocity', bulk_vel)
 #p.savefig("snapshot_600_radial_density_profile_3.png")
 
 ##generate ion species felds
-#trident.add_ion_fields(ds, ions=['O VI'], ftype='gas')
-#trident.add_ion_fields(ds, ions=['Mg II'], ftype='gas')
-#trident.add_ion_fields(ds, ions=['H I'], ftype='gas')
+trident.add_ion_fields(ds, ions=['O VI'], ftype='gas')
+trident.add_ion_fields(ds, ions=['Mg II'], ftype='gas')
+trident.add_ion_fields(ds, ions=['H I'], ftype='gas')
 
 ##face on ion field projection plots
-#pO = yt.ProjectionPlot(ds, 'z', 'O_p5_number_density', center=c, width=(500, 'kpc'))
-#pO.save()
+pO = yt.ProjectionPlot(ds, 'z', 'O_p5_number_density', center=c, width=(500, 'kpc'))
+pO.save()
 
-#pMg = yt.ProjectionPlot(ds, 'z', 'Mg_p1_number_density', center=c, width=(500, 'kpc'))
-#pMg.save()
+pMg = yt.ProjectionPlot(ds, 'z', 'Mg_p1_number_density', center=c, width=(500, 'kpc'))
+pMg.save()
 
-#pH = yt.ProjectionPlot(ds, 'z', 'H_p0_number_density', center=c, width=(500, 'kpc'))
-#pH.save()
+pH = yt.ProjectionPlot(ds, 'z', 'H_p0_number_density', center=c, width=(500, 'kpc'))
+pH.save()
 
 ##off axis ion projection plots
-#pO2 = yt.OffAxisProjectionPlot(ds, edge2, 'O_p5_number_density', center=c, width=(500, 'kpc'), north_vector=L)
-#pO2.save()
+pO2 = yt.OffAxisProjectionPlot(ds, edge2, 'O_p5_number_density', center=c, width=(500, 'kpc'), north_vector=L)
+pO2.save()
 
-#pMg2 = yt.OffAxisProjectionPlot(ds, edge2, 'Mg_p1_number_density', center=c, width=(500, 'kpc'), north_vector=L)
-#pMg2.save()
+pMg2 = yt.OffAxisProjectionPlot(ds, edge2, 'Mg_p1_number_density', center=c, width=(500, 'kpc'), north_vector=L)
+pMg2.save()
 
-#pH2 = yt.OffAxisProjectionPlot(ds, edge2, 'H_p0_number_density', center=c, width=(500, 'kpc'), north_vector=L)
-#pH2.save()
+pH2 = yt.OffAxisProjectionPlot(ds, edge2, 'H_p0_number_density', center=c, width=(500, 'kpc'), north_vector=L)
+pH2.save()
 
 ##ion field phase plots
-#adO = ds.all_data()
-#phaseO = yt.PhasePlot(adO, ('gas', 'density'), ('gas', 'temperature'), ('gas', 'O_p5_mass'), weight_field=None, fractional=False)
-#phaseO.save()
+adO = ds.all_data()
+phaseO = yt.PhasePlot(adO, ('gas', 'density'), ('gas', 'temperature'), ('gas', 'O_p5_mass'), weight_field=None, fractional=False)
+phaseO.save()
 
-#adMg = ds.all_data()
-#phaseMg = yt.PhasePlot(adMg, ('gas', 'density'), ('gas', 'temperature'), ('gas', 'Mg_p1_mass'), weight_field=None, fractional=False)
-#phaseMg.save()
+adMg = ds.all_data()
+phaseMg = yt.PhasePlot(adMg, ('gas', 'density'), ('gas', 'temperature'), ('gas', 'Mg_p1_mass'), weight_field=None, fractional=False)
+phaseMg.save()
 
-#adH = ds.all_data()
-#phaseH = yt.PhasePlot(adH, ('gas', 'density'), ('gas', 'temperature'), ('gas', 'H_p0_mass'), weight_field=None, fractional=False)
-#phaseH.save()
+adH = ds.all_data()
+phaseH = yt.PhasePlot(adH, ('gas', 'density'), ('gas', 'temperature'), ('gas', 'H_p0_mass'), weight_field=None, fractional=False)
+phaseH.save()
 
-#import sys; sys.exit()
+import sys; sys.exit()
 
 ##off axis slice and velocity vectors
 #p = yt.SlicePlot(ds, 'z', ('gas', 'density'), center=c, width=(200, 'kpc'), data_source=sp3)
