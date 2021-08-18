@@ -77,8 +77,9 @@ c = ds.arr([29345.27830223, 30997.08859958, 32484.0642261], 'code_length') #ds3
 #ds.add_particle_filter('angle_VI')
 
 ##plot galaxy face on
-#p = yt.ProjectionPlot(ds, 'x', ('gas', 'density'), center=c, width=(100, 'kpc'))
-#p.save()
+p = yt.ProjectionPlot(ds, 'x', ('gas', 'density'), center=c, width=(100, 'kpc'))
+p.save()
+import sys; sys.exit()
 
 ##create sphere
 sp1 = ds.sphere(c, (10.0, 'kpc'))
@@ -88,9 +89,8 @@ L = sp1.quantities.angular_momentum_vector()
 L, edge1, edge2 = ortho_find(L)
 
 ##plot galaxy edge on
-p = yt.OffAxisProjectionPlot(ds, edge2, ('gas', 'density'), center=c, width=(200, 'kpc'), north_vector=L)
-p.save()
-import sys; sys.exit()
+#p = yt.OffAxisProjectionPlot(ds, edge2, ('gas', 'density'), center=c, width=(200, 'kpc'), north_vector=L)
+#p.save()
 
 ##create a phase plot
 sp2 = ds.sphere(c, (200.0, 'kpc'))
