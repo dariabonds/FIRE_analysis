@@ -77,9 +77,8 @@ c = ds.arr([29345.27830223, 30997.08859958, 32484.0642261], 'code_length') #ds3
 #ds.add_particle_filter('angle_VI')
 
 ##plot galaxy face on
-p = yt.ProjectionPlot(ds, 'x', ('gas', 'density'), center=c, width=(100, 'kpc'))
-p.save()
-import sys; sys.exit()
+#p = yt.ProjectionPlot(ds, 'x', ('gas', 'density'), center=c, width=(100, 'kpc'))
+#p.save()
 
 ##create sphere
 sp1 = ds.sphere(c, (10.0, 'kpc'))
@@ -103,15 +102,16 @@ sp2.set_field_parameter('center', c)
 sp2.set_field_parameter('normal', L)
 
 ##create particle phase plot
-#p = yt.PhasePlot(sp2, ('PartType0', 'particle_position_spherical_radius'), ('gas', 'phi'), \
-#   ('gas', 'mass'), weight_field=None)
-#p.set_unit(('gas', 'mass'), 'Msun')
-#p.set_unit(('PartType0', 'particle_position_spherical_radius'), 'kpc')
-#p.set_unit(('gas', 'phi'), 'deg')
-#p.set_xlim(1e-2, 1e3)
-#p.set_ylim(0,90)
-#p.set_log(('gas', 'phi'), False)
-#p.save()
+p = yt.PhasePlot(sp2, ('PartType0', 'particle_position_spherical_radius'), ('gas', 'phi'), \
+   ('gas', 'mass'), weight_field=None)
+p.set_unit(('gas', 'mass'), 'Msun')
+p.set_unit(('PartType0', 'particle_position_spherical_radius'), 'kpc')
+p.set_unit(('gas', 'phi'), 'deg')
+p.set_xlim(1e-2, 1e3)
+p.set_ylim(0,90)
+p.set_log(('gas', 'phi'), False)
+p.save()
+import sys; sys.exit()
 
 ##apply angle filters
 #p1 = yt.PhasePlot(sp2, ('angle_I', 'spherical_position_radius'), \
