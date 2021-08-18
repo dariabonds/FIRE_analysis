@@ -59,14 +59,14 @@ yt.add_field(name=('gas', 'phi'), function=_phi, sampling_type='local', units='d
 ##load in dataset
 #ds = yt.load('../m12i_res56000_md/snapshot_600.hdf5') #ds1
 #ds = yt.load('../m12i_res7100_md/snapdir_600/snapshot_600.0.hdf5') #ds2
-ds = yt.load('/mnt/data1/GalaxiesOnFire/metaldiff/m12i_res7100_md/output/snapdir_600/snapshot_600.0.hdf5') #ds2
-#ds = yt.load('/mnt/data1/GalaxiesOnFire/cr_700/output/snapdir_600/snapshot_600.0.hdf5') #ds3
+#ds = yt.load('/mnt/data1/GalaxiesOnFire/metaldiff/m12i_res7100_md/output/snapdir_600/snapshot_600.0.hdf5') #ds2
+ds = yt.load('/mnt/data1/GalaxiesOnFire/cr_700/output/snapdir_600/snapshot_600.0.hdf5') #ds3
 
 ##find galaxy center
 #_, c = ds.find_max(('gas', 'density'))
 ##specific coord (x,y,z)
-c = ds.arr([29338.09863660, 30980.12414340, 32479.90455557], 'code_length') #ds2
-#c = ds.arr([29345.27830223, 30997.08859958, 32484.0642261], 'code_length') #ds3
+#c = ds.arr([29338.09863660, 30980.12414340, 32479.90455557], 'code_length') #ds2
+c = ds.arr([29345.27830223, 30997.08859958, 32484.0642261], 'code_length') #ds3
 
 ##add filters to data
 #ds.add_particle_filter('angle_I')
