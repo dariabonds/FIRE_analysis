@@ -182,77 +182,78 @@ sp3.set_field_parameter('bulk_velocity', bulk_vel)
 
 ##radial velocities by angle bins
 ##(‘angle_’, ‘radial_velocity’)
-#rp1 = yt.create_profile(sp3, ('angle_I', 'spherical_position_radius'), ('angle_I', 'radial_velocity'), weight_field=('angle_I', 'mass'), \
-#    units={('angle_I', 'spherical_position_radius'): 'kpc'}, logs={('angle_I', 'spherical_position_radius'): False})
+rp1 = yt.create_profile(sp3, ('angle_I', 'spherical_position_radius'), ('angle_I', 'radial_velocity'), weight_field=('angle_I', 'mass'), \
+    units={('angle_I', 'spherical_position_radius'): 'kpc'}, logs={('angle_I', 'spherical_position_radius'): False})
 
-#rp2 = yt.create_profile(sp3, ('angle_II', 'spherical_position_radius'), ('angle_II', 'radial_velocity'), weight_field=('angle_II', 'mass'), \
-#    units={('angle_II', 'spherical_position_radius'): 'kpc'}, logs={('angle_II', 'spherical_position_radius'): False})
+rp2 = yt.create_profile(sp3, ('angle_II', 'spherical_position_radius'), ('angle_II', 'radial_velocity'), weight_field=('angle_II', 'mass'), \
+    units={('angle_II', 'spherical_position_radius'): 'kpc'}, logs={('angle_II', 'spherical_position_radius'): False})
 
-#rp3 = yt.create_profile(sp3, ('angle_III', 'spherical_position_radius'), ('angle_III', 'radial_velocity'), weight_field=('angle_III', 'mass'), \
-#    units={('angle_III', 'spherical_position_radius'): 'kpc'}, logs={('angle_III', 'spherical_position_radius'): False})
+rp3 = yt.create_profile(sp3, ('angle_III', 'spherical_position_radius'), ('angle_III', 'radial_velocity'), weight_field=('angle_III', 'mass'), \
+    units={('angle_III', 'spherical_position_radius'): 'kpc'}, logs={('angle_III', 'spherical_position_radius'): False})
 
-#rp4 = yt.create_profile(sp3, ('angle_IV', 'spherical_position_radius'), ('angle_IV', 'radial_velocity'), weight_field=('angle_IV', 'mass'), \
-#    units={('angle_IV', 'spherical_position_radius'): 'kpc'}, logs={('angle_IV', 'spherical_position_radius'): False})
+rp4 = yt.create_profile(sp3, ('angle_IV', 'spherical_position_radius'), ('angle_IV', 'radial_velocity'), weight_field=('angle_IV', 'mass'), \
+    units={('angle_IV', 'spherical_position_radius'): 'kpc'}, logs={('angle_IV', 'spherical_position_radius'): False})
 
-#rp5 = yt.create_profile(sp3, ('angle_V', 'spherical_position_radius'), ('angle_V', 'radial_velocity'), weight_field=('angle_V', 'mass'), \
-#    units={('angle_V', 'spherical_position_radius'): 'kpc'}, logs={('angle_V', 'spherical_position_radius'): False})
+rp5 = yt.create_profile(sp3, ('angle_V', 'spherical_position_radius'), ('angle_V', 'radial_velocity'), weight_field=('angle_V', 'mass'), \
+    units={('angle_V', 'spherical_position_radius'): 'kpc'}, logs={('angle_V', 'spherical_position_radius'): False})
 
-#rp6 = yt.create_profile(sp3, ('angle_VI', 'spherical_position_radius'), ('angle_VI', 'radial_velocity'), weight_field=('angle_VI', 'mass'), \
-#    units={('angle_VI', 'spherical_position_radius'): 'kpc'}, logs={('angle_VI', 'spherical_position_radius'): False})
+rp6 = yt.create_profile(sp3, ('angle_VI', 'spherical_position_radius'), ('angle_VI', 'radial_velocity'), weight_field=('angle_VI', 'mass'), \
+    units={('angle_VI', 'spherical_position_radius'): 'kpc'}, logs={('angle_VI', 'spherical_position_radius'): False})
 
 ##radial velocity profile
-#p = plt.figure()
-#ax = p.add_subplot(111)
-#ax.plot(rp1.x.value, rp1[("angle_I", "radial_velocity")].in_units("km/s").value, \
-#        rp2.x.value, rp2[("angle_II", "radial_velocity")].in_units("km/s").value, \
-#        rp3.x.value, rp3[("angle_III", "radial_velocity")].in_units("km/s").value, \
-#        rp4.x.value, rp4[("angle_IV", "radial_velocity")].in_units("km/s").value, \
-#        rp5.x.value, rp5[("angle_V", "radial_velocity")].in_units("km/s").value, \
-#        rp6.x.value, rp6[("angle_VI", "radial_velocity")].in_units("km/s").value)
-#ax.set_xlabel(r"$\mathrm{r\ (kpc)}$")
-#ax.set_ylabel(r"$\mathrm{v_r\ (km/s)}$")
-#ax.legend(["0-15", "15-30", "30-45", "45-60", "60-75", "75-90"])
+p = plt.figure()
+ax = p.add_subplot(111)
+ax.plot(rp1.x.value, rp1[("angle_I", "radial_velocity")].in_units("km/s").value, \
+        rp2.x.value, rp2[("angle_II", "radial_velocity")].in_units("km/s").value, \
+        rp3.x.value, rp3[("angle_III", "radial_velocity")].in_units("km/s").value, \
+        rp4.x.value, rp4[("angle_IV", "radial_velocity")].in_units("km/s").value, \
+        rp5.x.value, rp5[("angle_V", "radial_velocity")].in_units("km/s").value, \
+        rp6.x.value, rp6[("angle_VI", "radial_velocity")].in_units("km/s").value)
+ax.set_xlabel(r"$\mathrm{r\ (kpc)}$")
+ax.set_ylabel(r"$\mathrm{v_r\ (km/s)}$")
+ax.legend(["0-15", "15-30", "30-45", "45-60", "60-75", "75-90"])
+p.set_ylim(-100, 150)
 #p.savefig("snapshot_600_radial_velocity_profile_1.1.png")
 #p.savefig("snapshot_600_radial_velocity_profile_2.png")
-#p.savefig("snapshot_600_radial_velocity_profile_CR.png")
+p.savefig("snapshot_600_radial_velocity_profile_CR.png")
 
 ##radial densities by angle bins
 ##(‘angle_’, ‘density’)
-rp1 = yt.create_profile(sp3, ('angle_I', 'spherical_position_radius'), ('angle_I', 'density'), weight_field=('angle_I', 'mass'), \
-    units={('angle_I', 'spherical_position_radius'): 'kpc'}, logs={('angle_I', 'spherical_position_radius'): True})
+#rp1 = yt.create_profile(sp3, ('angle_I', 'spherical_position_radius'), ('angle_I', 'density'), weight_field=('angle_I', 'mass'), \
+#    units={('angle_I', 'spherical_position_radius'): 'kpc'}, logs={('angle_I', 'spherical_position_radius'): True})
 
-rp2 = yt.create_profile(sp3, ('angle_II', 'spherical_position_radius'), ('angle_II', 'density'), weight_field=('angle_II', 'mass'), \
-    units={('angle_II', 'spherical_position_radius'): 'kpc'}, logs={('angle_II', 'spherical_position_radius'): True})
+#rp2 = yt.create_profile(sp3, ('angle_II', 'spherical_position_radius'), ('angle_II', 'density'), weight_field=('angle_II', 'mass'), \
+#    units={('angle_II', 'spherical_position_radius'): 'kpc'}, logs={('angle_II', 'spherical_position_radius'): True})
 
-rp3 = yt.create_profile(sp3, ('angle_III', 'spherical_position_radius'), ('angle_III', 'density'), weight_field=('angle_III', 'mass'), \
-    units={('angle_III', 'spherical_position_radius'): 'kpc'}, logs={('angle_III', 'spherical_position_radius'): True})
+#rp3 = yt.create_profile(sp3, ('angle_III', 'spherical_position_radius'), ('angle_III', 'density'), weight_field=('angle_III', 'mass'), \
+#    units={('angle_III', 'spherical_position_radius'): 'kpc'}, logs={('angle_III', 'spherical_position_radius'): True})
 
-rp4 = yt.create_profile(sp3, ('angle_IV', 'spherical_position_radius'), ('angle_IV', 'density'), weight_field=('angle_IV', 'mass'), \
-    units={('angle_IV', 'spherical_position_radius'): 'kpc'}, logs={('angle_IV', 'spherical_position_radius'): True})
+#rp4 = yt.create_profile(sp3, ('angle_IV', 'spherical_position_radius'), ('angle_IV', 'density'), weight_field=('angle_IV', 'mass'), \
+#    units={('angle_IV', 'spherical_position_radius'): 'kpc'}, logs={('angle_IV', 'spherical_position_radius'): True})
 
-rp5 = yt.create_profile(sp3, ('angle_V', 'spherical_position_radius'), ('angle_V', 'density'), weight_field=('angle_V', 'mass'), \
-    units={('angle_V', 'spherical_position_radius'): 'kpc'}, logs={('angle_V', 'spherical_position_radius'): True})
+#rp5 = yt.create_profile(sp3, ('angle_V', 'spherical_position_radius'), ('angle_V', 'density'), weight_field=('angle_V', 'mass'), \
+#    units={('angle_V', 'spherical_position_radius'): 'kpc'}, logs={('angle_V', 'spherical_position_radius'): True})
 
-rp6 = yt.create_profile(sp3, ('angle_VI', 'spherical_position_radius'), ('angle_VI', 'density'), weight_field=('angle_VI', 'mass'), \
-    units={('angle_VI', 'spherical_position_radius'): 'kpc'}, logs={('angle_VI', 'spherical_position_radius'): True})
+#rp6 = yt.create_profile(sp3, ('angle_VI', 'spherical_position_radius'), ('angle_VI', 'density'), weight_field=('angle_VI', 'mass'), \
+#    units={('angle_VI', 'spherical_position_radius'): 'kpc'}, logs={('angle_VI', 'spherical_position_radius'): True})
 
 ##radial density profile
-p = plt.figure()
-ax = p.add_subplot(111)
-ax.plot(rp1.x.value, rp1[("angle_I", "density")].in_units("g/cm**3").value, \
-        rp2.x.value, rp2[("angle_II", "density")].in_units("g/cm**3").value, \
-        rp3.x.value, rp3[("angle_III", "density")].in_units("g/cm**3").value, \
-        rp4.x.value, rp4[("angle_IV", "density")].in_units("g/cm**3").value, \
-        rp5.x.value, rp5[("angle_V", "density")].in_units("g/cm**3").value, \
-        rp6.x.value, rp6[("angle_VI", "density")].in_units("g/cm**3").value)
-ax.set_yscale('log')
-ax.set_xlabel(r"$\mathrm{r\ (kpc)}$")
-ax.set_ylabel(r"$\mathrm{rho\ (g/cm**3)}$")
-ax.legend(["0-15", "15-30", "30-45", "45-60", "60-75", "75-90"])
+#p = plt.figure()
+#ax = p.add_subplot(111)
+#ax.plot(rp1.x.value, rp1[("angle_I", "density")].in_units("g/cm**3").value, \
+#        rp2.x.value, rp2[("angle_II", "density")].in_units("g/cm**3").value, \
+#        rp3.x.value, rp3[("angle_III", "density")].in_units("g/cm**3").value, \
+#        rp4.x.value, rp4[("angle_IV", "density")].in_units("g/cm**3").value, \
+#        rp5.x.value, rp5[("angle_V", "density")].in_units("g/cm**3").value, \
+#        rp6.x.value, rp6[("angle_VI", "density")].in_units("g/cm**3").value)
+#ax.set_yscale('log')
+#ax.set_xlabel(r"$\mathrm{r\ (kpc)}$")
+#ax.set_ylabel(r"$\mathrm{rho\ (g/cm**3)}$")
+#ax.legend(["0-15", "15-30", "30-45", "45-60", "60-75", "75-90"])
 #p.savefig("snapshot_600_radial_density_profile_1.png")
 #p.savefig("snapshot_600_radial_density_profile_2.png")
 #p.savefig("snapshot_600_radial_density_profile_3.png")
-p.savefig("snapshot_600_radial_density_profile_CR.png")
+#p.savefig("snapshot_600_radial_density_profile_CR.png")
 
 ##generate ion species felds
 #trident.add_ion_fields(ds, ions=['O VI'], ftype='gas')
