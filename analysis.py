@@ -65,8 +65,8 @@ ds = yt.load('/mnt/data1/GalaxiesOnFire/metaldiff/m12i_res7100_md/output/snapdir
 ##find galaxy center
 #_, c = ds.find_max(('gas', 'density'))
 ##specific coord (x,y,z)
-c = ds.arr([29338.09863660, 30980.12414340, 32479.90455557], 'code_length') #ds2
-#c = ds.arr([29345.27830223, 30997.08859958, 32484.0642261], 'code_length') #ds3
+#c = ds.arr([29338.09863660, 30980.12414340, 32479.90455557], 'code_length') #ds2
+c = ds.arr([29345.27830223, 30997.08859958, 32484.0642261], 'code_length') #ds3
 
 ##add filters to data
 ds.add_particle_filter('angle_I')
@@ -212,10 +212,10 @@ ax.plot(rp1.x.value, rp1[("angle_I", "radial_velocity")].in_units("km/s").value,
 ax.set_xlabel(r"$\mathrm{r\ (kpc)}$")
 ax.set_ylabel(r"$\mathrm{v_r\ (km/s)}$")
 ax.legend(["0-15", "15-30", "30-45", "45-60", "60-75", "75-90"])
-p.set_ylim(-100, 100)
+ax.set_ylim(-100, 100)
 #p.savefig("snapshot_600_radial_velocity_profile_1.1.png")
-p.savefig("snapshot_600_radial_velocity_profile_.png")
-#p.savefig("snapshot_600_radial_velocity_profile_CR.png")
+#p.savefig("snapshot_600_radial_velocity_profile_.png")
+p.savefig("snapshot_600_radial_velocity_profile_CR_2.png")
 
 ##radial densities by angle bins
 ##(‘angle_’, ‘density’)
