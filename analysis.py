@@ -214,8 +214,8 @@ ax.set_ylabel(r"$\mathrm{v_r\ (km/s)}$")
 ax.legend(["0-15", "15-30", "30-45", "45-60", "60-75", "75-90"])
 ax.set_ylim(-100, 100)
 #p.savefig("snapshot_600_radial_velocity_profile_1.1.png")
-#p.savefig("snapshot_600_radial_velocity_profile_.png")
-p.savefig("snapshot_600_radial_velocity_profile_CR_2.png")
+p.savefig("snapshot_600_radial_velocity_profile_2.png")
+#p.savefig("snapshot_600_radial_velocity_profile_CR_2.png")
 
 ##radial densities by angle bins
 ##(‘angle_’, ‘density’)
