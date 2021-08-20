@@ -271,13 +271,13 @@ trident.add_ion_fields(ds, ions=['H I'], ftype='gas')
 #pH.save()
 
 ##off axis ion projection plots
-pO2 = yt.OffAxisProjectionPlot(ds, edge2, 'O_p5_number_density', center=c, width=(100, 'kpc'), north_vector=L)
+pO2 = yt.OffAxisProjectionPlot(ds, edge2, 'O_p5_number_density', center=c, width=(200, 'kpc'), north_vector=L)
 pO2.save()
 
-pMg2 = yt.OffAxisProjectionPlot(ds, edge2, 'Mg_p1_number_density', center=c, width=(100, 'kpc'), north_vector=L)
+pMg2 = yt.OffAxisProjectionPlot(ds, edge2, 'Mg_p1_number_density', center=c, width=(200, 'kpc'), north_vector=L)
 pMg2.save()
 
-pH2 = yt.OffAxisProjectionPlot(ds, edge2, 'H_p0_number_density', center=c, width=(100, 'kpc'), north_vector=L)
+pH2 = yt.OffAxisProjectionPlot(ds, edge2, 'H_p0_number_density', center=c, width=(200, 'kpc'), north_vector=L)
 pH2.save()
 
 ##ion field phase plots
